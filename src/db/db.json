@@ -8,6 +8,51 @@
       "avatar": "http",
       "createdAt": 1571213104370,
       "id": "Z2hlvDmLOSRZGebC_Z_aA"
+    },
+    {
+      "email": "user@gmail.com",
+      "password": "password",
+      "role": "ADMIN",
+      "verified": false,
+      "avatar": "http",
+      "createdAt": 1754843654814,
+      "id": "SrFE9RLkm5_7zvpZZNyi-"
+    },
+    {
+      "email": "user1@gmail.com",
+      "password": "password",
+      "role": "MEMBER",
+      "verified": false,
+      "avatar": "http",
+      "createdAt": 1754844093373,
+      "id": "fqbJm4u9yUBBNw13w0sSf"
+    },
+    {
+      "email": "user3@gmail.com",
+      "password": "password",
+      "role": "MEMBER",
+      "verified": false,
+      "avatar": "http",
+      "createdAt": 1754844941863,
+      "id": "8AfwQAUrmk1U25B0zt60U"
+    },
+    {
+      "email": "user4@gmail.com",
+      "password": "password",
+      "role": "ADMIN",
+      "verified": false,
+      "avatar": "http",
+      "createdAt": 1754845019607,
+      "id": "0N-JPkwjXhZ5qlAUPtzZ5"
+    },
+    {
+      "email": "adminuser@gmail.com",
+      "password": "password",
+      "role": "ADMIN",
+      "verified": false,
+      "avatar": "http",
+      "createdAt": 1754845304728,
+      "id": "CMXJPXKJwt_m3AQmoMz3D"
     }
   ],
   "posts": [],

@@ -1,5 +1,10 @@
 const gql = require("graphql-tag");
-const { ApolloServer, PubSub } = require("apollo-server");
+const {
+    ApolloServer,
+    PubSub,
+    ApolloError,
+    AuthenticationError,
+} = require("apollo-server");
 
 /**
  * This PubSub instance will act as a message broker for our GraphQL subscriptions.
@@ -113,7 +118,11 @@ const resolvers = {
 
     User: {
         error() {
-            throw new Error("Oops something went wrong");
+            // We can customize the type of error we want to return
+            // Here we are throwing an AuthenticationError
+            // This error will be caught by the formatError function in the ApolloServer instance
+            // and will be sent to the client with a custom message.
+            throw new AuthenticationError("Oops something went wrong");
         },
     },
 };
@@ -121,6 +130,15 @@ const resolvers = {
 /* Create GraphQL Server */
 
 const server = new ApolloServer({
+    formatError(err) {
+        /**
+         * Here we can customize the error response sent to the client.
+         * For example, we can log the error or modify the error message.
+         * We also can use any error reporting software like Sentry
+         */
+        console.error(err);
+        return err;
+    },
     typeDefs,
     resolvers,
 });

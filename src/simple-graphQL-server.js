@@ -28,6 +28,7 @@ const typeDefs = gql`
         id: ID!
         email: String!
         name: String
+        error: String
     }
 
     type Settings {
@@ -54,11 +55,11 @@ const typeDefs = gql`
         settings(input: SettingsInput!): Settings!
         createPost(message: String!): Post!
     }
-   
+
     # This subscription type at in the schema defines:
     # 1. Available subscription endpoints that clients can subscribe to
     # 2. The data that will be sent to the clients when the event occurs
-    
+
     type Subscription {
         newPost: Post!
     }
@@ -107,6 +108,12 @@ const resolvers = {
     Subscription: {
         newPost: {
             subscribe: () => pubsub.asyncIterator("NEW_POST"),
+        },
+    },
+
+    User: {
+        error() {
+            throw new Error("Oops something went wrong");
         },
     },
 };

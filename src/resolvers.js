@@ -1,6 +1,8 @@
 const { authenticated, authorized } = require("./auth");
+const { PubSub } = require("apollo-server");
 const NEW_POST = "NEW_POST";
 
+const pubsub = new PubSub();
 /**
  * Anything Query / Mutation resolver
  * using a user for a DB query
@@ -44,7 +46,7 @@ module.exports = {
         // admin role
         invite: authenticated(
             authorized("ADMIN", (_, { input }, { user }) => {
-              console.log('user',user)
+                console.log("user", user);
                 return {
                     from: user,
                     role: input.role,
@@ -102,6 +104,12 @@ module.exports = {
     Post: {
         author(post, _, { models }) {
             return models.User.findOne({ id: post.author });
+        },
+    },
+    // We need to create a resolver for the subscription field that created in the typedefs
+    Subscription: {
+        newPost: {
+            subscribe: () => pubsub.asyncIterator(NEW_POST),
         },
     },
 };
